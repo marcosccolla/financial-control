@@ -1,41 +1,32 @@
 import React from "react";
 import { Resume } from "../Resume";
 
-import {
-  AiFillCaretUp,
-  AiFillCaretDown,
-  AiFillDollarCircle,
-} from "react-icons/ai";
+// import {
+//   AiFillCaretUp,
+//   AiFillCaretDown,
+//   AiFillDollarCircle,
+// } from "react-icons/ai";
 
-const Data = [
-  {
-    title: "Entrada",
-    icon: <AiFillCaretUp />,
-    value: "R$0.00",
-  },
-  {
-    title: "Saidas",
-    icon: <AiFillCaretDown />,
-    value: "R$0.00",
-  },
-  {
-    title: "Total",
-    icon: <AiFillDollarCircle />,
-    value: "R$0.00",
-  },
-];
-
-export const CardList = () => {
+export const CardList = ({ saldo, entrada, saida }) => {
   return (
     <>
-      {Data.map((item) => (
-        <Resume
-          key={item.title}
-          title={item.title}
-          icon={item.icon}
-          value={item.value}
-        />
-      ))}
+      {/* {Data.map((item) => ( */}
+      <Resume
+        title="Entrada "
+        // icon="AiFillCaretDown/>
+        value={entrada}
+      />
+      <Resume
+        title="Saída"
+        // icon={item.icon}
+        value={saida}
+      />
+      <Resume
+        title="Saldo"
+        // icon={item.icon}
+        value={saldo}
+      />
+      {/* ))} */}
     </>
   );
 };

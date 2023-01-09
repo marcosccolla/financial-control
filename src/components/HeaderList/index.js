@@ -1,20 +1,40 @@
 import React from "react";
-import { Box, BoxHead, BoxH, BoxTi, BoxT } from "./style";
-// import { Statement } from "../Statement/index";
-// import { Statement } from "./../Statement/index";
+import {
+  MdDeleteForever,
+  MdArrowCircleDown,
+  MdArrowCircleUp,
+} from "react-icons/md";
+import { Table, Th, Td } from "./style";
 
-export const HeaderList = () => {
-  // const newStatement = (statement) => {
-  //   console.log(statement);
-  // };
+export const HeaderList = ({ dataSales, onDelete }) => {
   return (
-    <Box>
-      <BoxHead>Descrição</BoxHead>
-      <BoxH>Valor</BoxH>
-      <BoxTi>Tipo</BoxTi>
-      <BoxT></BoxT>
-      {/* <AddMovement addStatement={(statement) => newStatement(statement)} /> */}
-      {/* <Statement addStatement={(statement) => newStatement(statement)} /> */}
-    </Box>
+    <Table>
+      <thead>
+        <tr>
+          <Th width={40}>Descrição</Th>
+          <Th width={40}>Valor</Th>
+          <Th width={10}>Tipo</Th>
+          <Th width={10}></Th>
+        </tr>
+      </thead>
+      <tbody>
+        {dataSales?.map((dataSales, index) => (
+          <tr key={index}>
+            <Td>{dataSales.descricao} </Td>
+            <Td>R${Math.abs(dataSales.valor).toFixed(2)} </Td>
+            <Td>
+              {dataSales.tipo === 1 ? (
+                <MdArrowCircleDown color="red" />
+              ) : (
+                <MdArrowCircleUp color="green" />
+              )}
+            </Td>
+            <Td>
+              <MdDeleteForever onDelete={onDelete} />
+            </Td>
+          </tr>
+        ))}
+      </tbody>
+    </Table>
   );
 };

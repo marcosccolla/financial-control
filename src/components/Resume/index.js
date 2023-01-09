@@ -1,15 +1,15 @@
 import React from "react";
 import { Box, Card, BoxValue } from "./style";
 
-export const Resume = (props) => {
+export const Resume = ({ title, icon, value }) => {
   return (
     <Box>
       <Card>
-        <h4>{props.title} </h4>
-        <p>{props.icon} </p>
+        <h4>{title} </h4>
+        <p>{icon} </p>
       </Card>
       <div>
-        <BoxValue>{props.value} </BoxValue>
+        <BoxValue>R${value} </BoxValue>
       </div>
     </Box>
   );

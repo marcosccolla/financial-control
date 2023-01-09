@@ -2,28 +2,33 @@ import React from "react";
 import { Form, BoxDest, Input, BoxInputs, Button } from "./style";
 import { useState } from "react";
 
-export const AddMovement = () => {
-  const [formValues, setFormValues] = useState({});
-  const [checkValues, setCheckValues] = useState({});
+export const AddMovement = ({ handleSave }) => {
+  const [descricao, setDescricao] = useState({});
+  const [Values, setValues] = useState({});
+  const [tipo, setTipo] = useState();
 
-  const hadleInputChange = (evento) => {
-    const { name, value } = evento.target;
-    setFormValues({ ...formValues, [name]: value });
-  };
+  // const hadleInputChange = (evento) => {
+  //   const { name, value } = evento.target;
+  //   setFormValues({ ...formValues, [name]: value });
+  // };
 
-  const headleCheckBox = (evento) => {
-    const { name, value } = evento.target;
-    setCheckValues({ ...checkValues, [name]: value });
-  };
+  // const headleCheckBox = (evento) => {
+  //   const { name, value } = evento.target;
+  //   setCheckValues({ ...checkValues, [name]: value });
+  // };
 
   const hadleSubmit = (evento) => {
     evento.preventDefault();
-    const formData = new FormData(evento.target);
-    const data = Object.fromEntries(formData);
 
-    console.log(data);
+    const dadosFinanceiros = {
+      descricao: descricao,
+      valor: Values,
+      tipo: tipo,
+    };
+
+    handleSave(dadosFinanceiros);
+    evento.target.reset();
   };
-  console.log("*** formValues", formValues);
 
   return (
     <Form onSubmit={hadleSubmit}>
@@ -34,8 +39,8 @@ export const AddMovement = () => {
           type="text"
           id="descricao"
           name="descricao"
-          onChange={hadleInputChange}
-          value={formValues.descricao || ""}
+          onChange={(evento) => setDescricao(evento.target.value)}
+          // value={formValues.descricao || ""}
         />
       </div>
       <div>
@@ -45,8 +50,8 @@ export const AddMovement = () => {
           id="valor"
           type="number"
           name="valor"
-          onChange={hadleInputChange}
-          value={formValues.valor || ""}
+          onChange={(evento) => setValues(evento.target.value)}
+          // value={formValues.valor || ""}
         />
       </div>
       <BoxInputs>
@@ -55,7 +60,7 @@ export const AddMovement = () => {
             required="true"
             type="radio"
             name="movimentacao"
-            onChange={headleCheckBox}
+            onChange={() => setTipo(0)}
             value="entrada"
           />
           Entrada
@@ -65,7 +70,7 @@ export const AddMovement = () => {
             required="true"
             type="radio"
             name="movimentacao"
-            onChange={headleCheckBox}
+            onChange={() => setTipo(1)}
             value="saida"
           />
           Saída
