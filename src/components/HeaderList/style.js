@@ -25,7 +25,7 @@ export const Td = styled.td`
   svg {
     width: 20px;
     height: 20px;
-    text-align: center;
+    /* text-align: center; */
   }
 
   &:last-child {

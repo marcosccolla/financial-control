@@ -7,16 +7,6 @@ export const AddMovement = ({ handleSave }) => {
   const [Values, setValues] = useState({});
   const [tipo, setTipo] = useState();
 
-  // const hadleInputChange = (evento) => {
-  //   const { name, value } = evento.target;
-  //   setFormValues({ ...formValues, [name]: value });
-  // };
-
-  // const headleCheckBox = (evento) => {
-  //   const { name, value } = evento.target;
-  //   setCheckValues({ ...checkValues, [name]: value });
-  // };
-
   const hadleSubmit = (evento) => {
     evento.preventDefault();
 
@@ -40,7 +30,6 @@ export const AddMovement = ({ handleSave }) => {
           id="descricao"
           name="descricao"
           onChange={(evento) => setDescricao(evento.target.value)}
-          // value={formValues.descricao || ""}
         />
       </div>
       <div>
@@ -48,10 +37,9 @@ export const AddMovement = ({ handleSave }) => {
         <Input
           required="true"
           id="valor"
-          type="number"
+          type="text"
           name="valor"
           onChange={(evento) => setValues(evento.target.value)}
-          // value={formValues.valor || ""}
         />
       </div>
       <BoxInputs>
@@ -59,9 +47,9 @@ export const AddMovement = ({ handleSave }) => {
           <input
             required="true"
             type="radio"
+            defaultChecked
             name="movimentacao"
             onChange={() => setTipo(0)}
-            value="entrada"
           />
           Entrada
         </label>
@@ -71,7 +59,6 @@ export const AddMovement = ({ handleSave }) => {
             type="radio"
             name="movimentacao"
             onChange={() => setTipo(1)}
-            value="saida"
           />
           Saída
         </label>

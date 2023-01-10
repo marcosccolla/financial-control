@@ -1,10 +1,10 @@
 import React from "react";
+import { Table, Th, Td } from "./style";
 import {
   MdDeleteForever,
   MdArrowCircleDown,
   MdArrowCircleUp,
 } from "react-icons/md";
-import { Table, Th, Td } from "./style";
 
 export const HeaderList = ({ dataSales, onDelete }) => {
   return (
@@ -30,7 +30,7 @@ export const HeaderList = ({ dataSales, onDelete }) => {
               )}
             </Td>
             <Td>
-              <MdDeleteForever onDelete={onDelete} />
+              <MdDeleteForever onClick={() => onDelete(index)} />
             </Td>
           </tr>
         ))}
