@@ -6,7 +6,7 @@ export const Resume = ({ title, icon, value }) => {
     <Box>
       <Card>
         <h4>{title} </h4>
-        <p>{icon} </p>
+        <p>{icon}</p>
       </Card>
       <div>
         <BoxValue>R${value} </BoxValue>

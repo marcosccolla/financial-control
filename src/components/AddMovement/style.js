@@ -35,7 +35,7 @@ export const Button = styled.button`
   border-radius: 5px;
   cursor: pointer;
   color: rgb(255, 255, 255);
-  background-color: rgb(0, 128, 128);
+  background-color: rgb(58, 85, 180);
   transition: all 200ms ease-in 0s;
   font-size: 17px;
 `;

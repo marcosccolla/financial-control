@@ -21,6 +21,6 @@ export const Titulo = styled.h3`
 `;
 
 export const Teste = styled.div`
-  background-image: linear-gradient(#008080 15%, #f2f2f2 10%);
+  background-image: linear-gradient(#3a4bb4 15%, #f2f2f2 10%);
   height: 900px;
 `;

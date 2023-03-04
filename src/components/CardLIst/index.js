@@ -1,32 +1,26 @@
 import React from "react";
 import { Resume } from "../Resume";
-
-// import {
-//   AiFillCaretUp,
-//   AiFillCaretDown,
-//   AiFillDollarCircle,
-// } from "react-icons/ai";
+import { MdArrowCircleUp, MdArrowCircleDown } from "react-icons/md";
+import { HiCurrencyDollar } from "react-icons/hi";
 
 export const CardList = ({ saldo, entrada, saida }) => {
   return (
     <>
-      {/* {Data.map((item) => ( */}
       <Resume
         title="Entrada "
-        // icon="AiFillCaretDown/>
+        icon={<MdArrowCircleUp color="green" />}
         value={entrada}
       />
       <Resume
         title="Saída"
-        // icon={item.icon}
+        icon={<MdArrowCircleDown color="red" />}
         value={saida}
       />
       <Resume
         title="Saldo"
-        // icon={item.icon}
+        icon={<HiCurrencyDollar color="#3a4bb4" />}
         value={saldo}
       />
-      {/* ))} */}
     </>
   );
 };

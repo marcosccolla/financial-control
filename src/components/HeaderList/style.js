@@ -19,13 +19,12 @@ export const Th = styled.th`
 `;
 export const Td = styled.td`
   padding-top: 15px;
-  /* text-align: center; */
   word-break: break-all;
 
   svg {
     width: 20px;
     height: 20px;
-    /* text-align: center; */
+    text-align: center;
   }
 
   &:last-child {
