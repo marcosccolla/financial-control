@@ -1,28 +1,33 @@
 import { Form, BoxDest, Input, BoxInputs, Button, Break } from "./style";
 import { useState, React } from "react";
 
-export const AddMovement = ({ handleSave, erro }) => {
+export const AddMovement = ({ handleSave, erro, setErro }) => {
   const [descricao, setDescricao] = useState("");
   const [values, setValues] = useState("");
   const [tipo, setTipo] = useState(0);
 
-  const hadleSubmit = (evento) => {
+  const handleSubmit = (evento) => {
     evento.preventDefault();
-    console.log("eu");
 
-    const dadosFinanceiros = {
-      descricao: descricao,
-      valor: values,
-      tipo: tipo,
-    };
+    try {
+      const valuesNumber = parseFloat(values);
+      const dadosFinanceiros = {
+        descricao: descricao,
+        valor: valuesNumber,
+        tipo: tipo,
+      };
+      handleSave(dadosFinanceiros);
+    } catch (e) {
+      console.error(e);
+      setErro("Erro: o campo valor deve ser do tipo número.");
+    }
 
-    handleSave(dadosFinanceiros);
     setValues("");
     setDescricao("");
   };
 
   return (
-    <Form onSubmit={hadleSubmit}>
+    <Form onSubmit={handleSubmit}>
       <div>
         <BoxDest>Descrição</BoxDest>
         <Input

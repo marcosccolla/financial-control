@@ -71,7 +71,7 @@ export const Home = () => {
       <Box>
         <CardList saldo={saldo} entrada={entrada} saida={saida} />
       </Box>
-      <AddMovement handleSave={handleSave} erro={erro} />
+      <AddMovement handleSave={handleSave} erro={erro} setErro={setErro} />
 
       <HeaderList dataSales={dataSales} onDelete={onDelete} />
     </Teste>
