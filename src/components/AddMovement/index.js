@@ -1,27 +1,33 @@
-import { Form, BoxDest, Input, BoxInputs, Button } from "./style";
+import { Form, BoxDest, Input, BoxInputs, Button, Break } from "./style";
 import { useState, React } from "react";
 
-export const AddMovement = ({ handleSave }) => {
+export const AddMovement = ({ handleSave, erro, setErro }) => {
   const [descricao, setDescricao] = useState("");
   const [values, setValues] = useState("");
   const [tipo, setTipo] = useState(0);
 
-  const hadleSubmit = (evento) => {
+  const handleSubmit = (evento) => {
     evento.preventDefault();
 
-    const dadosFinanceiros = {
-      descricao: descricao,
-      valor: values,
-      tipo: tipo,
-    };
+    try {
+      const valuesNumber = parseFloat(values);
+      const dadosFinanceiros = {
+        descricao: descricao,
+        valor: valuesNumber,
+        tipo: tipo,
+      };
+      handleSave(dadosFinanceiros);
+    } catch (e) {
+      console.error(e);
+      setErro("Erro: o campo valor deve ser do tipo número.");
+    }
 
-    handleSave(dadosFinanceiros);
     setValues("");
     setDescricao("");
   };
 
   return (
-    <Form onSubmit={hadleSubmit}>
+    <Form onSubmit={handleSubmit}>
       <div>
         <BoxDest>Descrição</BoxDest>
         <Input
@@ -38,7 +44,7 @@ export const AddMovement = ({ handleSave }) => {
         <Input
           required={true}
           id="valor"
-          type="text"
+          type="number"
           name="valor"
           value={values}
           onChange={(evento) => setValues(evento.target.value)}
@@ -67,6 +73,12 @@ export const AddMovement = ({ handleSave }) => {
         </label>
       </BoxInputs>
       <Button type="submit">Adicionar</Button>
+      {erro && (
+        <>
+          <Break />
+          <span>{erro}</span>
+        </>
+      )}
     </Form>
   );
 };
