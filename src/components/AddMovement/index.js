@@ -1,13 +1,14 @@
-import { Form, BoxDest, Input, BoxInputs, Button } from "./style";
+import { Form, BoxDest, Input, BoxInputs, Button, Break } from "./style";
 import { useState, React } from "react";
 
-export const AddMovement = ({ handleSave }) => {
+export const AddMovement = ({ handleSave, erro }) => {
   const [descricao, setDescricao] = useState("");
   const [values, setValues] = useState("");
   const [tipo, setTipo] = useState(0);
 
   const hadleSubmit = (evento) => {
     evento.preventDefault();
+    console.log("eu");
 
     const dadosFinanceiros = {
       descricao: descricao,
@@ -38,7 +39,7 @@ export const AddMovement = ({ handleSave }) => {
         <Input
           required={true}
           id="valor"
-          type="text"
+          type="number"
           name="valor"
           value={values}
           onChange={(evento) => setValues(evento.target.value)}
@@ -67,6 +68,12 @@ export const AddMovement = ({ handleSave }) => {
         </label>
       </BoxInputs>
       <Button type="submit">Adicionar</Button>
+      {erro && (
+        <>
+          <Break />
+          <span>{erro}</span>
+        </>
+      )}
     </Form>
   );
 };

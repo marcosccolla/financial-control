@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 export const Form = styled.form`
   display: flex;
+  flex-wrap: wrap;
   background: #fff;
   max-width: 1120px;
   align-items: center;
@@ -38,4 +39,8 @@ export const Button = styled.button`
   background-color: rgb(58, 85, 180);
   transition: all 200ms ease-in 0s;
   font-size: 17px;
+`;
+
+export const Break = styled.div`
+  width: 100%;
 `;

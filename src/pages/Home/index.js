@@ -12,14 +12,27 @@ export const Home = () => {
   const [saida, setSaida] = useState(0);
   const [saldo, setSaldo] = useState(0);
   const [atualizaInputs, setAtualizaInputs] = useState(0);
+  const [erro, setErro] = useState(undefined);
 
   useEffect(() => {
     const TotalSaida = dataSales
-      .filter((item) => item.tipo === 1)
+      .filter((item) => {
+        const valor = item.valor;
+        if (typeof valor === "string" || Number.isNaN(valor)) {
+          return false;
+        }
+        return item.tipo === 1;
+      })
       .map((transaction) => Number(transaction.valor));
 
     const TotalEntrada = dataSales
-      .filter((item) => item.tipo === 0)
+      .filter((item) => {
+        const valor = item.valor;
+        if (typeof valor === "string" || Number.isNaN(valor)) {
+          return false;
+        }
+        return item.tipo === 0;
+      })
       .map((transaction) => Number(transaction.valor));
 
     const Entradas = TotalEntrada.reduce((acc, cur) => acc + cur, 0).toFixed(2);
@@ -33,6 +46,11 @@ export const Home = () => {
   }, [atualizaInputs, dataSales]);
 
   const handleSave = (dados) => {
+    const dadosValor = dados.valor;
+    if (typeof dadosValor === "string" || Number.isNaN(dadosValor)) {
+      setErro("Erro: valor deve ser um número.");
+      return;
+    }
     const data = [...dataSales, dados];
     setDataSales(data);
     setAtualizaInputs(!atualizaInputs);
@@ -53,7 +71,8 @@ export const Home = () => {
       <Box>
         <CardList saldo={saldo} entrada={entrada} saida={saida} />
       </Box>
-      <AddMovement handleSave={handleSave} />
+      <AddMovement handleSave={handleSave} erro={erro} />
+
       <HeaderList dataSales={dataSales} onDelete={onDelete} />
     </Teste>
   );
